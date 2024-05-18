@@ -1,0 +1,138 @@
+<template>
+  <section class="subscribe">
+    <div class="container">
+      <form class="subscribe__form" action="#" method="post">
+        <h2 class="subscribe__title">
+          Подпишись на&nbsp;рассылку и&nbsp;узнавай о&nbsp;новинках первым!
+        </h2>
+
+        <fieldset class="subscribe__field">
+          <input class="subscribe__input" type="email" name="email" placeholder="E-mail" />
+          <button-component>Отправить</button-component>
+
+          <!--  <button class="subscribe__button" type="submit">
+            <span class="subscribe__button-text">Отправить</span>
+          </button> -->
+        </fieldset>
+      </form>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import ButtonComponent from '@/components/ButtonComponent.vue'
+</script>
+
+<style lang="scss" scoped>
+@import '@/assets/styles/variables.scss';
+@import '@/assets/styles/media';
+
+.subscribe {
+  padding: 120px 0;
+
+  @include laptop {
+    padding: 100px 0;
+  }
+
+  @include mobile {
+    padding: 80px 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__title {
+    max-width: 1000px;
+    margin-bottom: 50px;
+    font-weight: 700;
+    font-size: 52px;
+    line-height: 1.3;
+    text-align: center;
+    color: $green;
+
+    @include laptop {
+      font-size: 44px;
+      margin-bottom: 32px;
+    }
+
+    @include mobile {
+      font-size: 30px;
+    }
+  }
+
+  &__field {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    max-width: 732px;
+    width: 100%;
+    border: none;
+  }
+
+  &__input {
+    border: 2px solid $purple;
+    border-radius: 40px;
+    padding: 14px 30px;
+    width: 100%;
+    background-color: transparent;
+    font-weight: 400;
+    font-size: inherit;
+    line-height: 1.4;
+    color: $green;
+
+    &::placeholder {
+      color: $green;
+      opacity: 0.4;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: $purple;
+    border: 1px solid transparent;
+    border-radius: 40px;
+    padding: 16px 31px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: $light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: 209px;
+    transition-property: background-color, font-size;
+    transition-duration: 0.3s, 0.2s;
+    transition-timing-function: ease-in-out;
+    font-size: 24px;
+    &:hover {
+      background: #971dcf;
+      font-size: 18px;
+    }
+    @include mobile {
+      padding: 0;
+      min-width: 54px;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 16px;
+      background-image: url('@/assets/img/arrow-up.svg');
+    }
+  }
+
+  &__button-text {
+    @include mobile {
+      position: fixed;
+      transform: scale(0);
+    }
+  }
+}
+</style>
