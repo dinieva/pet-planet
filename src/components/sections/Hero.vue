@@ -10,7 +10,7 @@
         alt="Товары для твоих любимцев"
       />
 
-      <p class="hero__text">Большой выбор домиков, лежанок и&nbsp;кормов для кошек и&nbsp;собак</p>
+      <p class="hero__text">Большой выбор домиков, лежанок и кормов для кошек и собак</p>
 
       <router-link to="/catalog" class="hero__store-link" :style="{ display: bool }"
         >Перейти в магазин</router-link
@@ -32,7 +32,6 @@ const props = defineProps({
 })
 
 heroClass.value = props.bgImagee === true ? 'hero' : 'hero_store'
-// heroClass.value = props.bgImagee === true ? 'hero__bg-dog' : 'hero__bg-cat'
 bool.value = props.bgImagee === true ? 'flex' : 'none'
 </script>
 
@@ -107,6 +106,13 @@ bool.value = props.bgImagee === true ? 'flex' : 'none'
   &__text {
     max-width: 420px;
     margin-bottom: 60px;
+
+    &:nth-last-child(2) {
+      margin-bottom: 0;
+    }
+    @include bigscreen {
+      max-width: 540px;
+    }
     @include laptop {
       max-width: 360px;
     }

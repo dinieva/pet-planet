@@ -36,11 +36,4 @@
     min-width: 54px;
   }
 }
-
-.button-text {
-  @include mobile {
-    position: fixed;
-    transform: scale(0);
-  }
-}
 </style>

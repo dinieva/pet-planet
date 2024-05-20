@@ -4,18 +4,14 @@ import HeaderComponent from '../components/HeaderComponent.vue'
 import Hero from '../components/sections/Hero.vue'
 import CartItem from '../components/CartItem.vue'
 import FooterComponent from '../components/FooterComponent.vue'
+import DrawerComponent from '../components/DrawerComponent.vue'
 import { useCatalogStore } from '../stores/catalog'
 import { useCartStore } from '../stores/cart'
 
-const categories = [
-  { id: 1, title: 'Домики' },
-  { id: 2, title: 'Лежанки' },
-  { id: 3, title: 'Игрушки' },
-  { id: 4, title: 'Корма' }
-]
+const categories = ['Домики', 'Лежанки', 'Игрушки', 'Корма']
 
 const cartStore = useCartStore()
-const homeItems = useCatalogStore().homeCatalog
+const catalogItems = useCatalogStore().catalogItems
 
 const activeCategory = ref()
 onMounted(() => {
@@ -31,6 +27,7 @@ const selectItem = (idx) => {
 }
 </script>
 <template>
+  <DrawerComponent />
   <HeaderComponent />
 
   <main>
@@ -43,7 +40,7 @@ const selectItem = (idx) => {
             <li
               class="store__category-item"
               v-for="(category, index) in categories"
-              :key="category.id"
+              :key="category"
               @click="selectItem(index)"
             >
               <button
@@ -52,13 +49,15 @@ const selectItem = (idx) => {
                   { 'store__category-button_active': index === activeCategory }
                 ]"
               >
-                {{ category.title }}
+                {{ category }}
               </button>
             </li>
           </ul>
 
           <button class="store__cart-button">
+            <span class="store__cart-count">{{ cartStore.cartItems.length }}</span>
             <svg
+              class="store__cart-icon"
               width="28"
               height="28"
               viewBox="0 0 28 28"
@@ -72,13 +71,14 @@ const selectItem = (idx) => {
                 fill="#E47537"
               />
             </svg>
-            <span class="store__cart-button__amount">{{ cartStore.cartItems.length }}</span>
           </button>
         </div>
 
         <h2 class="store__title">Каталог</h2>
         <ul class="store__list">
-          <CartItem v-for="product in homeItems" :key="product" :product="product" />
+          <div v-for="product in catalogItems" :key="product">
+            <CartItem :product="product" v-if="product.categories === categories[activeCategory]" />
+          </div>
         </ul>
       </div>
     </section>
@@ -97,13 +97,16 @@ const selectItem = (idx) => {
   padding-bottom: 120px;
   &__header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 38px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
   }
   &__categories {
     display: flex;
     gap: 28px;
     position: relative;
+    flex-wrap: wrap;
   }
   &__category-button {
     font-size: 24px;
@@ -116,21 +119,40 @@ const selectItem = (idx) => {
   }
   &__title {
     margin-bottom: 32px;
+    font-size: 52px;
+    font-weight: 700;
   }
   &__list {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 420px);
+    justify-content: center;
+    gap: 20px;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__cart-button {
     position: relative;
-    &__amount {
-      position: absolute;
-      top: 40%;
-      left: 40%;
-      color: #fff;
-    }
+    display: block;
+    width: 28px;
+    height: 28px;
+  }
+
+  &__cart-count {
+    position: relative;
+    top: 3px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: $light;
+    z-index: 2;
+  }
+  &__cart-icon {
+    position: absolute;
+    inset: 0; //занимает все пространство
+    z-index: 1;
   }
 }
 </style>

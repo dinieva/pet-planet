@@ -2,17 +2,14 @@
   <section class="subscribe">
     <div class="container">
       <form class="subscribe__form" action="#" method="post">
-        <h2 class="subscribe__title">
-          Подпишись на&nbsp;рассылку и&nbsp;узнавай о&nbsp;новинках первым!
-        </h2>
+        <h2 class="subscribe__title">Подпишись на рассылку и узнавай о новинках первым!</h2>
 
         <fieldset class="subscribe__field">
           <input class="subscribe__input" type="email" name="email" placeholder="E-mail" />
-          <button-component>Отправить</button-component>
 
-          <!--  <button class="subscribe__button" type="submit">
+          <button class="subscribe__button" type="submit">
             <span class="subscribe__button-text">Отправить</span>
-          </button> -->
+          </button>
         </fieldset>
       </form>
     </div>
@@ -20,7 +17,6 @@
 </template>
 
 <script setup>
-import ButtonComponent from '@/components/ButtonComponent.vue'
 </script>
 
 <style lang="scss" scoped>
@@ -126,12 +122,11 @@ import ButtonComponent from '@/components/ButtonComponent.vue'
       height: 16px;
       background-image: url('@/assets/img/arrow-up.svg');
     }
-  }
-
-  &__button-text {
-    @include mobile {
-      position: fixed;
-      transform: scale(0);
+    &-text {
+      @include mobile {
+        position: fixed;
+        transform: scale(0);
+      }
     }
   }
 }
