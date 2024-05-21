@@ -25,7 +25,7 @@ export const useCatalogStore = defineStore('catalog', () => {
     {
       id: 3,
       categories: 'Домики',
-      name: 'Домик для кошки с когтеточкой Домик для кошки с когтеточкой',
+      name: 'Домик для кошки с когтеточкой',
       photoUrl: 'src/assets/img/catalog/image3.png',
       price: 3800
     },
@@ -54,42 +54,48 @@ export const useCatalogStore = defineStore('catalog', () => {
       id: 7,
       categories: 'Лежанки',
       name: 'Комфортная лежанка для кошек',
-      photoUrl: 'src/assets/img/catalog/image6.png',
+      photoUrl:
+        'https://www.zoo-pushistiki.ru/img/products/medium_20096.jpg?time=2022-11-22%2015:47:51',
       price: 2500
     },
     {
       id: 8,
       categories: 'Лежанки',
       name: 'Мягкая лежанка для собак',
-      photoUrl: 'src/assets/img/catalog/image6.png',
+      photoUrl:
+        'https://www.zoo-pushistiki.ru/img/products/medium_20057.jpg?time=2022-11-28%2015:33:51',
       price: 3200
     },
     {
       id: 9,
       categories: 'Лежанки',
       name: 'Лежанка с подогревом',
-      photoUrl: 'src/assets/img/catalog/image6.png',
+      photoUrl:
+        'https://www.zoo-pushistiki.ru/img/products/medium_9923.jpg?time=2019-02-14%2013:14:42',
       price: 4700
     },
     {
       id: 10,
       categories: 'Лежанки',
       name: 'Лежанка для кошек с игрушкой',
-      photoUrl: 'src/assets/img/catalog/image6.png',
+      photoUrl:
+        'https://www.zoo-pushistiki.ru/img/products/medium_23061.jpg?time=2023-10-20%2010:50:15',
       price: 2800
     },
     {
       id: 11,
       categories: 'Лежанки',
       name: 'Водонепроницаемая лежанка',
-      photoUrl: 'src/assets/img/catalog/image6.png',
+      photoUrl:
+        'https://www.zoo-pushistiki.ru/img/products/medium_20064.jpg?time=2022-11-28%2015:24:54',
       price: 3500
     },
     {
       id: 12,
       categories: 'Лежанки',
       name: 'Охлаждающая лежанка',
-      photoUrl: 'src/assets/img/catalog/image6.png',
+      photoUrl:
+        'https://www.zoo-pushistiki.ru/img/products/medium_9922.jpg?time=2019-02-13%2017:16:57',
       price: 3000
     },
     {
@@ -133,29 +139,51 @@ export const useCatalogStore = defineStore('catalog', () => {
       name: 'Диск фрисби',
       photoUrl: 'https://6kcmxu3d7l.a.trbcdn.net/upload/files-new/21/af/0e/489632_325x400.jpg',
       price: 1228
+    },
+    {
+      id: 19,
+      categories: 'Корма',
+      name: 'Корм Royal Canin для взрослых крупных собак',
+      photoUrl: 'https://6kcmxu3d7l.a.trbcdn.net/upload/files-new/97/d2/5a/624602_325x400.jpg',
+      price: 6998
+    },
+    {
+      id: 20,
+      categories: 'Корма',
+      name: 'GO KITCHEN лосось и морская рыба для щенков',
+      photoUrl: 'https://6kcmxu3d7l.a.trbcdn.net/upload/files-new/30/47/15/655970_325x400.jpg',
+      price: 4000
+    },
+    {
+      id: 21,
+      categories: 'Корма',
+      name: 'Корм Equilibrio для взрослых собак с ягненком',
+      photoUrl: 'https://6kcmxu3d7l.a.trbcdn.net/upload/files-new/b5/ea/e0/573145_325x400.jpg',
+      price: 1380
     }
   ]
 
   // если товары тянутся с удаленного сервера
-  const API_URL = 'https://sharp-torpid-prune.glitch.me'
-  const apiKey = import.meta.env.VITE_API_KEY_OPENWEATHERMAP
+  // если товары тянутся с удаленного сервера
+  /*  const API_URL = 'https://sharp-torpid-prune.glitch.me'
+ const apiKey = import.meta.env.VITE_API_KEY_OPENWEATHERMAP
 
-  const productList = ref([])
-  const fetchProductByCategory = async (category) => {
-    productList.value = []
-    try {
-      const response = await fetch(`${API_URL}/api/product/category/${category}`)
-      const catalogItemsArray = await response.json()
+ const productList = ref([])
+ const fetchProductByCategory = async (category) => {
+   productList.value = []
+   try {
+     const response = await fetch(`${API_URL}/api/product/category/${category}`)
+     const catalogItemsArray = await response.json()
 
-      productList.value.push(catalogItemsArray)
+     productList.value.push(catalogItemsArray)
 
-      if (!response.ok) {
-        throw new Error('response.status')
-      }
-    } catch (error) {
-      console.error(`Ошибка запроса товаров: ${error}`)
-    }
-  }
+     if (!response.ok) {
+       throw new Error('response.status')
+     }
+   } catch (error) {
+     console.error(`Ошибка запроса товаров: ${error}`)
+   }
+ } */
 
-  return { catalogItems, fetchProductByCategory }
+  return { catalogItems /*  fetchProductByCategory */ }
 })

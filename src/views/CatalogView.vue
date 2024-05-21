@@ -11,23 +11,31 @@ import { useCartStore } from '../stores/cart'
 const categories = ['Домики', 'Лежанки', 'Игрушки', 'Корма']
 
 const cartStore = useCartStore()
-const catalogItems = useCatalogStore().catalogItems
+const catalogItems = ref()
+catalogItems.value = useCatalogStore().catalogItems
+// const catalogItems = useCatalogStore().catalogItems
 
 const activeCategory = ref()
+const openModalCart = ref()
+
+openModalCart.value = false
 onMounted(() => {
   activeCategory.value = 0
 })
 
-const selectItem = (idx) => {
+const selectItem = (idx, category) => {
+  console.log(idx, category)
+  catalogItems.value = useCatalogStore().catalogItems
   activeCategory.value = idx
+  catalogItems.value = catalogItems.value.filter((item) => item.categories === category)
   return activeCategory.value
-  /* items.forEach((item, index) => {
-    return (isActive = item == items[index])
-  }) */
+}
+const closeOpenModalCart = () => {
+  openModalCart.value = false
 }
 </script>
 <template>
-  <DrawerComponent />
+  <DrawerComponent :openModalCart="openModalCart" @closeOpenModalCart="closeOpenModalCart" />
   <HeaderComponent />
 
   <main>
@@ -41,7 +49,7 @@ const selectItem = (idx) => {
               class="store__category-item"
               v-for="(category, index) in categories"
               :key="category"
-              @click="selectItem(index)"
+              @click="selectItem(index, category)"
             >
               <button
                 :class="[
@@ -54,7 +62,7 @@ const selectItem = (idx) => {
             </li>
           </ul>
 
-          <button class="store__cart-button">
+          <button class="store__cart-button" @click="openModalCart = true">
             <span class="store__cart-count">{{ cartStore.cartItems.length }}</span>
             <svg
               class="store__cart-icon"
@@ -63,6 +71,7 @@ const selectItem = (idx) => {
               viewBox="0 0 28 28"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              @click="openModalCart = true"
             >
               <circle cx="18" cy="14" r="2" fill="#E47537" />
               <circle cx="10" cy="14" r="2" fill="#E47537" />

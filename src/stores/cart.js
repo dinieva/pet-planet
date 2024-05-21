@@ -4,28 +4,24 @@ import { defineStore } from 'pinia'
 export const useCartStore = defineStore('cart', () => {
   const cartItems = ref([])
 
-  cartItems.value = [
-    {
-      id: 1,
-      categories: 'Домики',
-      name: 'Скандинавский домик для собаки',
-      photoUrl: 'src/assets/img/catalog/image1.png',
-      price: 5400
-    },
-    {
-      id: 2,
-      categories: 'Домики',
-      name: 'Домик со съемной крышей',
-      photoUrl: 'src/assets/img/catalog/image2.png',
-      price: 7200
-    },
-    {
-      id: 3,
-      categories: 'Домики',
-      name: 'Домик для кошки с когтеточкой Домик для кошки с когтеточкой',
-      photoUrl: 'src/assets/img/catalog/image3.png',
-      price: 3800
+  const changeQuantity = (id, minusOrPlus) => {
+    let action = minusOrPlus == 'minus' ? 'minus' : 'plus'
+    let currentItem = cartItems.value.find((item) => item.id === id)
+    if (action == 'minus') {
+      currentItem.quantity -= 1
+      currentItem.price = currentItem.price * currentItem.quantity
+      if (currentItem.quantity == 0) {
+        cartItems.value = cartItems.value.filter((item) => item.id !== id)
+      }
+
+      console.log(cartItems.value)
     }
-  ]
-  return { cartItems }
+    if (action == 'plus') {
+      currentItem.quantity += 1
+      currentItem.price = currentItem.price * currentItem.quantity
+      console.log(cartItems.value)
+    }
+  }
+
+  return { cartItems, changeQuantity }
 })

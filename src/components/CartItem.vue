@@ -23,8 +23,11 @@ defineProps({
 })
 
 const addToCart = (item) => {
-  cartStore.cartItems.push(item)
-  console.log(item)
+  let objForCart = {
+    ...item
+  }
+  objForCart.quantity = 1
+  cartStore.cartItems.push(objForCart)
 }
 </script>
 
@@ -55,7 +58,7 @@ const addToCart = (item) => {
   }
 
   &__image {
-    width: 264px;
+    // width: 264px;
     max-height: 261px;
     margin-bottom: 16px;
   }
@@ -66,7 +69,12 @@ const addToCart = (item) => {
     font-weight: 700;
     margin-bottom: 4px;
     flex-grow: 1;
-
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     @include tablet {
       font-size: 24px;
     }

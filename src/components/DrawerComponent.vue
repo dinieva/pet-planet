@@ -1,21 +1,38 @@
 <template>
-  <div class="drawer" style="display: none">
+  <div class="drawer" v-if="openModalCart">
+    <div class="overlay" @click="$emit('closeOpenModalCart', false)"></div>
     <div class="container">
       <div class="drawer__img"></div>
       <div class="drawer__cart">
         <h3 class="drawer__cart-title">Корзина</h3>
+
+        <div class="empty-cart" v-if="cartItems.length == 0">
+          <div class="empty-cart-img">
+            <p>Добавьте что-нибудь в корзину</p>
+          </div>
+        </div>
         <ul class="drawer__cart-list">
-          <li v-for="item in cartItems" :key="item.id">
+          <li v-for="product in cartItems" :key="product.id">
             <div class="list-item">
-              <img class="list-item__img" :src="item.photoUrl" :alt="item.name" />
-              <div class="list-item__title">{{ item.name }}</div>
+              <img class="list-item__img" :src="product.photoUrl" :alt="product.name" />
+              <div class="list-item__title">{{ product.name }}</div>
 
               <div class="list-item__quantity">
-                <button class="quantity__button-decrease">-</button>
-                <input type="text" class="quantity__num" :value="counter" />
-                <button class="quantity__button-increase">+</button>
+                <button
+                  class="quantity__button-decrease"
+                  @click="useCartStore().changeQuantity(product.id, 'minus')"
+                >
+                  -
+                </button>
+                <input type="text" class="quantity__num" :value="product.quantity" readonly />
+                <button
+                  class="quantity__button-increase"
+                  @click="useCartStore().changeQuantity(product.id, 'plus')"
+                >
+                  +</button
+                ><!-- @click="changeAmount(item.quantity, 'plus')" -->
               </div>
-              <div class="list-item__price">{{ item.price }} ₽</div>
+              <div class="list-item__price">{{ product.price }} ₽</div>
             </div>
           </li>
         </ul>
@@ -38,7 +55,7 @@
         </div>
 
         <div class="cart-bottom">
-          <button-component @click="addToCart(product)" class="drawer__cart-btn"
+          <button-component @click="sendOder(cartItems)" class="drawer__cart-btn"
             >Заказать</button-component
           >
           <div class="total-price">{{ total }}</div>
@@ -49,20 +66,50 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useCartStore } from '../stores/cart.js'
 import ButtonComponent from '@/components/ButtonComponent.vue'
-const cartItems = useCartStore().cartItems
 
-const counter = ref()
+const cartItems = ref()
+cartItems.value = useCartStore().cartItems
+
 const total = ref()
-counter.value = 1
-total.value = 12000
+const allPrices = ref([])
+
+total.value = computed(() => {
+  allPrices.value = []
+  cartItems.value.forEach((item) => allPrices.value.push(item.price))
+  return allPrices.value.reduce((sum, price) => sum + price, 0)
+})
+
+const props = defineProps({
+  openModalCart: {
+    type: Boolean,
+    required: true
+  }
+})
+
+defineEmits(['closeOpenModalCart'])
+
+const sendOder = (item) => {
+  alert('Спасибо за заказ! ')
+  console.log('Ваш заказ:', item)
+}
+
+watchEffect(() => (cartItems.value = useCartStore().cartItems))
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/variables.scss';
-
+@import '@/assets/styles/media';
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
 .container {
   background-color: #fff;
   display: grid;
@@ -72,6 +119,13 @@ total.value = 12000
   //   height: 459px;
   height: auto;
   border-radius: 24px;
+  z-index: 52;
+  @include tablet {
+    grid-template-columns: 1fr;
+  }
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
 }
 .drawer {
   position: fixed;
@@ -82,7 +136,6 @@ total.value = 12000
   z-index: 51;
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.7);
 
   &__img {
     background: url('@/assets/img/cart-image.jpg') left center/cover no-repeat;
@@ -173,10 +226,30 @@ li {
 .cart-bottom {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 16px;
 }
 .total-price {
   color: $purple;
   font-weight: 700;
+}
+.empty-cart {
+  text-align: center;
+  margin: 0 auto;
+  color: #8f8d8d;
+  font-size: 18px;
+  &-img {
+    background: url('@/assets/img/empty-cart-fish-bone.svg') no-repeat;
+    background-size: 50%;
+    background-position: center top;
+    width: 100%;
+    height: 200px;
+    opacity: 0.7;
+    position: relative;
+    & p {
+      position: absolute;
+      bottom: 20%;
+    }
+  }
 }
 </style>
