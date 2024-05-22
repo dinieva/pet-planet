@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import HeaderComponent from '../components/HeaderComponent.vue'
 import Hero from '../components/sections/Hero.vue'
 import CartItem from '../components/CartItem.vue'
@@ -11,9 +11,10 @@ import { useCartStore } from '../stores/cart'
 const categories = ['Домики', 'Лежанки', 'Игрушки', 'Корма']
 
 const cartStore = useCartStore()
+const cartItems = ref()
 const catalogItems = ref()
+cartItems.value = useCartStore().cartItems
 catalogItems.value = useCatalogStore().catalogItems
-// const catalogItems = useCatalogStore().catalogItems
 
 const activeCategory = ref()
 const openModalCart = ref()
@@ -24,7 +25,6 @@ onMounted(() => {
 })
 
 const selectItem = (idx, category) => {
-  console.log(idx, category)
   catalogItems.value = useCatalogStore().catalogItems
   activeCategory.value = idx
   catalogItems.value = catalogItems.value.filter((item) => item.categories === category)
@@ -63,7 +63,7 @@ const closeOpenModalCart = () => {
           </ul>
 
           <button class="store__cart-button" @click="openModalCart = true">
-            <span class="store__cart-count">{{ cartStore.cartItems.length }}</span>
+            <span class="store__cart-count">{{ cartStore.numberOfAllCartProd }}</span>
             <svg
               class="store__cart-icon"
               width="28"

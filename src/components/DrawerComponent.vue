@@ -32,8 +32,9 @@
                   +</button
                 ><!-- @click="changeAmount(item.quantity, 'plus')" -->
               </div>
-              <div class="list-item__price">{{ product.price }} ₽</div>
+              <div class="list-item__price">{{ product.totalPrice() }} ₽</div>
             </div>
+            <!-- {{ product.price * product.quantity }} -->
           </li>
         </ul>
         <div class="pickup">
@@ -78,7 +79,7 @@ const allPrices = ref([])
 
 total.value = computed(() => {
   allPrices.value = []
-  cartItems.value.forEach((item) => allPrices.value.push(item.price))
+  cartItems.value.forEach((item) => allPrices.value.push(item.totalPrice()))
   return allPrices.value.reduce((sum, price) => sum + price, 0)
 })
 

@@ -22,13 +22,7 @@ defineProps({
   }
 })
 
-const addToCart = (item) => {
-  let objForCart = {
-    ...item
-  }
-  objForCart.quantity = 1
-  cartStore.cartItems.push(objForCart)
-}
+const addToCart = (item) => cartStore.addToCart(item)
 </script>
 
 <style lang="scss" scoped>

@@ -1,11 +1,12 @@
 <template>
   <footer class="footer">
     <div class="container footer__container">
-      <img
-        class="footer__logo"
-        src="@/assets/img/logo.svg"
-        alt="Логотип с лапой магазина PetPlanet"
-      />
+      <router-link to="/">
+        <img
+          class="footer__logo"
+          src="@/assets/img/logo.svg"
+          alt="Логотип с лапой магазина PetPlanet"
+      /></router-link>
 
       <div class="footer__info">
         <p class="footer__copyright">&copy;Petshop, 2024</p>

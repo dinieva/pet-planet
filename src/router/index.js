@@ -14,12 +14,16 @@ const router = createRouter({
       path: '/catalog',
       name: 'catalog',
       component: CatalogView
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      /*  component: () => import('../views/CatalogView.vue') */
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    return (
+      savedPosition ||
+      new Promise((resolve) => {
+        setTimeout(() => resolve({ top: 0, behavior: 'smooth' }), 100)
+      })
+    )
+  }
 })
 
 export default router
