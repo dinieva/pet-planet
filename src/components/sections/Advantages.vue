@@ -21,7 +21,7 @@
 
       <div class="advantages__count-box">
         <p class="advantages__count">10</p>
-        <p class="advantages__count-text">магазинов в&nbsp;сети</p>
+        <p class="advantages__count-text">магазинов в сети</p>
       </div>
     </div>
   </section>
@@ -134,13 +134,13 @@ const advantages = [
   }
 
   &__item_assortment {
-    background-image: url('@/assets/img/assortment.png');
+    background-image: url('@assets/img/assortment.png');
     background-image: image-set(
       url('@/assets/img/assortment.avif') type('image/avif') 1x,
       url('@/assets/img/assortment@2x.avif') type('image/avif') 2x,
-      url('@assets/img/assortment.webp') type('image/webp') 1x,
+      url('@/assets/img/assortment.webp') type('image/webp') 1x,
       url('@/assets/img/assortment@2x.webp') type('image/webp') 2x,
-      url('@/assets@assets/img/assortment.png') type('image/png') 1x,
+      url('@/assets/img/assortment.png') type('image/png') 1x,
       url('@/assets/img/assortment@2x.png') type('image/png') 2x
     );
   }

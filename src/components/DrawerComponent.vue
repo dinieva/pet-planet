@@ -61,6 +61,7 @@
           >
           <div class="total-price">{{ total }}</div>
         </div>
+        {{ emptyCart }}
       </div>
     </div>
   </div>
@@ -75,6 +76,7 @@ const cartItems = ref()
 cartItems.value = useCartStore().cartItems
 
 const total = ref()
+const emptyCart = ref('')
 const allPrices = ref([])
 
 total.value = computed(() => {
@@ -93,7 +95,18 @@ const props = defineProps({
 defineEmits(['closeOpenModalCart'])
 
 const sendOder = (item) => {
-  alert('Спасибо за заказ! ')
+  console.log('cartItems.value ', cartItems.value.length)
+  if (item.length !== 0) {
+    alert('Спасибо за заказ! ')
+  } else {
+    emptyCart.value = 'Корзина пуста'
+    setTimeout(() => {
+      emptyCart.value = ' '
+    }, 1000)
+
+    return
+  }
+
   console.log('Ваш заказ:', item)
 }
 

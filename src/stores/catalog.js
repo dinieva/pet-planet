@@ -2,11 +2,6 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useCatalogStore = defineStore('catalog', () => {
-  /* image: 'assets/img/cars/5.png',
-      image: "assets/images/1.png",
-      path: '/forecast/weather-svg/sun.svg' 
-      pet-planet/assets/img/catalog/image1.png
-    */
   const catalogItems = [
     {
       id: 1,
@@ -54,48 +49,42 @@ export const useCatalogStore = defineStore('catalog', () => {
       id: 7,
       categories: 'Лежанки',
       name: 'Комфортная лежанка для кошек',
-      photoUrl:
-        'https://www.zoo-pushistiki.ru/img/products/medium_20096.jpg?time=2022-11-22%2015:47:51',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka1.jpg',
       price: 2500
     },
     {
       id: 8,
       categories: 'Лежанки',
       name: 'Мягкая лежанка для собак',
-      photoUrl:
-        'https://www.zoo-pushistiki.ru/img/products/medium_20057.jpg?time=2022-11-28%2015:33:51',
+      photoUrl: 'src//assets/img/catalog/beds/lezanka2.png',
       price: 3200
     },
     {
       id: 9,
       categories: 'Лежанки',
       name: 'Лежанка с подогревом',
-      photoUrl:
-        'https://www.zoo-pushistiki.ru/img/products/medium_9923.jpg?time=2019-02-14%2013:14:42',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka3.jpg',
       price: 4700
     },
     {
       id: 10,
       categories: 'Лежанки',
       name: 'Лежанка для кошек с игрушкой',
-      photoUrl:
-        'https://www.zoo-pushistiki.ru/img/products/medium_23061.jpg?time=2023-10-20%2010:50:15',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka4(1).jpeg',
       price: 2800
     },
     {
       id: 11,
       categories: 'Лежанки',
       name: 'Водонепроницаемая лежанка',
-      photoUrl:
-        'https://www.zoo-pushistiki.ru/img/products/medium_20064.jpg?time=2022-11-28%2015:24:54',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka5.jpg',
       price: 3500
     },
     {
       id: 12,
       categories: 'Лежанки',
       name: 'Охлаждающая лежанка',
-      photoUrl:
-        'https://www.zoo-pushistiki.ru/img/products/medium_9922.jpg?time=2019-02-13%2017:16:57',
+      photoUrl: '../assets/img/catalog/',
       price: 3000
     },
     {

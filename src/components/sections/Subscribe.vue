@@ -1,28 +1,69 @@
 <template>
   <section class="subscribe">
     <div class="container">
-      <form class="subscribe__form" action="#" method="post">
+      <form class="subscribe__form" action="#" method="post" @submit.prevent="subscribe">
         <h2 class="subscribe__title">Подпишись на рассылку и узнавай о новинках первым!</h2>
 
         <fieldset class="subscribe__field">
-          <input class="subscribe__input" type="email" name="email" placeholder="E-mail" />
+          <input
+            class="subscribe__input"
+            type="email"
+            name="email"
+            placeholder="E-mail"
+            v-model="userEmail"
+          />
 
           <button class="subscribe__button" type="submit">
             <span class="subscribe__button-text">Отправить</span>
           </button>
         </fieldset>
+        <p class="notice" v-if="notice">{{ notice }}</p>
       </form>
     </div>
   </section>
 </template>
 
 <script setup>
+import { ref } from 'vue'
+const userEmail = ref('')
+const notice = ref('')
+
+const subscribe = async () => {
+  try {
+    await fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      body: JSON.stringify({ subscribe: userEmail }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+      }
+    }).then((response) => {
+      console.log('response', response)
+      if (response.ok) {
+        notice.value = 'Вы подписались на рассылку '
+      } else {
+        notice.value = 'Ошибка ' + response.status
+      }
+    })
+  } catch (err) {
+    notice.value = 'Ошибка '
+    console.log('error', err)
+  } finally {
+    userEmail.value = ''
+    setTimeout(() => {
+      notice.value = ' '
+    }, 3000)
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 @import '@/assets/styles/variables.scss';
 @import '@/assets/styles/media';
 
+.notice {
+  font-size: 20px;
+  text-align: center;
+}
 .subscribe {
   padding: 120px 0;
 
