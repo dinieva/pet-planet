@@ -14,77 +14,77 @@ export const useCatalogStore = defineStore('catalog', () => {
       id: 2,
       categories: 'Домики',
       name: 'Домик со съемной крышей',
-      photoUrl: 'assets/img/catalog/image2.png',
+      photoUrl: 'src/assets/img/catalog/image2.png',
       price: 7200
     },
     {
       id: 3,
       categories: 'Домики',
       name: 'Домик для кошки с когтеточкой',
-      photoUrl: 'assets/img/catalog/image3.png',
+      photoUrl: 'src/assets/img/catalog/image3.png',
       price: 3800
     },
     {
       id: 4,
       categories: 'Домики',
       name: 'Домик шар для питомцев',
-      photoUrl: 'assets/img/catalog/image4.png',
+      photoUrl: 'src/assets/img/catalog/image4.png',
       price: 4500
     },
     {
       id: 5,
       categories: 'Домики',
       name: 'Домик для собак',
-      photoUrl: 'assets/img/catalog/image5.png',
+      photoUrl: 'src/assets/img/catalog/image5.png',
       price: 6200
     },
     {
       id: 6,
       categories: 'Домики',
       name: 'Домик-конус для питомцев',
-      photoUrl: 'assets/img/catalog/image6.png',
+      photoUrl: 'src/assets/img/catalog/image6.png',
       price: 5700
     },
     {
       id: 7,
       categories: 'Лежанки',
       name: 'Комфортная лежанка для кошек',
-      photoUrl: 'assets/img/catalog/beds/lezanka1.jpg',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka1.jpg',
       price: 2500
     },
     {
       id: 8,
       categories: 'Лежанки',
       name: 'Мягкая лежанка для собак',
-      photoUrl: 'assets/img/catalog/beds/lezanka2.png',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka2.png',
       price: 3200
     },
     {
       id: 9,
       categories: 'Лежанки',
       name: 'Лежанка с подогревом',
-      photoUrl: 'assets/img/catalog/beds/lezanka3.jpg',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka3.jpg',
       price: 4700
     },
     {
       id: 10,
       categories: 'Лежанки',
       name: 'Лежанка для кошек с игрушкой',
-      photoUrl: 'assets/img/catalog/beds/lezanka4(1).jpeg',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka4(1).jpeg',
       price: 2800
     },
     {
       id: 11,
       categories: 'Лежанки',
       name: 'Водонепроницаемая лежанка',
-      photoUrl: 'assets/img/catalog/beds/lezanka5.jpg',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka5.jpg',
       price: 3500
     },
     {
       id: 12,
       categories: 'Лежанки',
       name: 'Охлаждающая лежанка',
-      photoUrl: 'assets/img/catalog/',
+      photoUrl: 'src/assets/img/catalog/beds/lezanka6.jpg',
       price: 3000
     },
     {
